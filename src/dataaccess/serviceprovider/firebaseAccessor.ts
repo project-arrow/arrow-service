@@ -1,9 +1,9 @@
 import { FirebaseApp } from 'firebase/app';
-import { FirebaseConfigurer } from './firebaseConfigurer';
 import { Firestore, getFirestore } from 'firebase/firestore';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
+import FirebaseConfigurer from './firebaseConfigurer';
 
-export class FirebaseAccessor {
+export default class FirebaseAccessor {
   private static getApp(): FirebaseApp {
     return FirebaseConfigurer.getFirebaseApp();
   }

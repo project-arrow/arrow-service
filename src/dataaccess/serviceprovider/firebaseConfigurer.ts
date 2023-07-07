@@ -1,6 +1,6 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
 
-export class FirebaseConfigurer {
+export default class FirebaseConfigurer {
   private static getFirebaseConfig(): FirebaseOptions {
     return {
       apiKey: process.env.API_KEY,
