@@ -1,7 +1,7 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
 
 export class FirebaseConfigurer {
-  private getFirebaseConfig(): FirebaseOptions {
+  private static getFirebaseConfig(): FirebaseOptions {
     return {
       apiKey: process.env.API_KEY,
       authDomain: process.env.AUTH_DOMAIN,
@@ -13,7 +13,7 @@ export class FirebaseConfigurer {
     };
   }
 
-  getFirebaseApp(): FirebaseApp {
+  public static getFirebaseApp(): FirebaseApp {
     return initializeApp(this.getFirebaseConfig());
   }
 }
