@@ -1,4 +1,5 @@
-import BaseDatabaseProvider from '../services/databaseprovider/BaseDatabseProvider ';
+import BaseDatabaseProvider from '../services/databaseprovider/BaseDatabaseProvider ';
+import { FilterType } from '../services/databaseprovider/filterType';
 
 interface UpdatableObjectOf<T> {
   data: T;
@@ -13,22 +14,15 @@ export default abstract class BaseRepository<T> {
     this.collectionPath = '';
   }
 
-  async add(docId: string, data: T) {
-    return await this.db.insertWithId(this.collectionPath, {
-      docId: docId,
-      data,
-    });
+  async add(data: T) {
+    return await this.db.insertWithId(this.collectionPath, data as Object);
   }
 
   async update(docId: string, updates: UpdatableObjectOf<T>) {
-    const filters = {
-      docId: docId,
-    };
-
-    const fetchedData = await this.db.find<T>(this.collectionPath, filters);
+    const fetchedData = await this.db.find<T>(this.collectionPath, docId);
     if (!fetchedData) return false;
 
-    return this.db.update(this.collectionPath, filters, {
+    return this.db.update(this.collectionPath, docId, {
       data: {
         ...(fetchedData as any).data,
         ...updates.data,
@@ -37,22 +31,14 @@ export default abstract class BaseRepository<T> {
   }
 
   async delete(docId: string) {
-    const filters = {
-      docId: docId,
-    };
-
-    return await this.db.deleteOne(this.collectionPath, filters);
+    return await this.db.deleteOne(this.collectionPath, docId);
   }
 
   async getOne(docId: string) {
-    const filters = {
-      docId: docId,
-    };
-
-    return await this.db.getFirst<T>(this.collectionPath, filters);
+    return await this.db.getFirst<T>(this.collectionPath, docId);
   }
 
   async getAll() {
-    return await this.db.getAll<T>(this.collectionPath, {});
+    return await this.db.getAll<T>(this.collectionPath);
   }
 }

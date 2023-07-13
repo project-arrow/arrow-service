@@ -1,4 +1,5 @@
 import { ObjectWithId } from './ReturnTypes';
+import { FilterType } from './filterType';
 
 export default interface BaseDatabaseProvider {
   /**
@@ -11,11 +12,11 @@ export default interface BaseDatabaseProvider {
   insertWithId(collection: string, document: object): Promise<string>;
 
   /**
-   * Finds a document
+   * Finds all the matching document
    * @param collection
    * @param document
    */
-  find<T>(collection: string, document: object): Promise<T | null>;
+  find<T>(collection: string, document: string): Promise<T | null>;
 
   /**
    * Checks if there's an item in collection.
@@ -29,25 +30,21 @@ export default interface BaseDatabaseProvider {
    * @param filter
    * @param document
    */
-  update(
-    collection: string,
-    filter: object,
-    document: object
-  ): Promise<boolean>;
+  update(collection: string, docId: string, document: object): Promise<boolean>;
 
   /**
    * Gets all item within the collection
    * @param collection
    * @param filters
    */
-  getAll<T>(collection: string, filters: object): Promise<ObjectWithId<T>[]>;
+  getAll<T>(collection: string): Promise<ObjectWithId<T>[]>;
 
   getFirst<T>(
     collection: string,
-    filters: object
+    docId: string
   ): Promise<ObjectWithId<T> | null>;
 
-  deleteOne(collection: string, filters: object): Promise<void>;
+  deleteOne(collection: string, docId: string): Promise<void>;
 
-  deleteAll(collection: string, filters: object): Promise<void>;
+  deleteAll(collection: string): Promise<void>;
 }
