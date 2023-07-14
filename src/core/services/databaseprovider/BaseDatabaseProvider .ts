@@ -12,7 +12,7 @@ export default interface BaseDatabaseProvider {
   insertWithId(collection: string, document: object): Promise<string>;
 
   /**
-   * Finds all the matching document
+   * Finds a specific document
    * @param collection
    * @param document
    */

@@ -2,9 +2,9 @@ import { UserInfo } from '../../core/entities/userinfomanagement/UserInfo';
 import { UserInfoRepository } from '../../core/entities/userinfomanagement/UserInfoRepository';
 import AddUserInfoHandler from '../../core/entities/userinfomanagement/handlers/AddUserInfoHandler';
 import { DatabaseProvider } from '../../dataaccess/serviceprovider/DatabaseProvider';
-import FirebaseAccessor from '../../dataaccess/serviceprovider/FirebaseAccessor';
+import FirebaseAccessor from '../../dataaccess/serviceprovider/firebaseAccessor';
 
-export function AddUserInfo(data: UserInfo) {
+export default function addUserInfo(data: UserInfo) {
   const databaseProvider = new DatabaseProvider(FirebaseAccessor.getDb());
   const repository = new UserInfoRepository(databaseProvider);
   const handler = new AddUserInfoHandler(repository);
