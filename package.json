@@ -1,14 +1,13 @@
 {
-  "name": "arrow-service",
+  "name": "@projarrow/arrow-service",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "splitscale",
   "license": "ISC",
   "devDependencies": {
     "@jest/globals": "^29.6.0",
@@ -22,5 +21,14 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "firebase": "^9.23.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project-arrow/arrow-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/project-arrow/arrow-service/issues"
+  },
+  "homepage": "https://github.com/project-arrow/arrow-service#readme",
+  "description": ""
 }
